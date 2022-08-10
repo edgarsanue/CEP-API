@@ -9,10 +9,15 @@ const preencherForm = (endereco) => {
 
 const searchCep = async() => {
     const cep = document.getElementById('cep').value;
-    const url = `https://viacep.com.br/ws/${cep}/json/`;
+    const url = `http://viacep.com.br/ws/${cep}/json/`;
     const dados =  await fetch(url);
     const endereco = await dados.json();
-    preencherForm(endereco);   
+
+    if(endereco.hasOwnProperty('erro')){
+        document.getElementById('endereco').value = 'CEP não encontrado';
+    } else {
+        preencherForm(endereco); 
+    }    
 }
 
 document.getElementById('cep').addEventListener('focusout', searchCep)
