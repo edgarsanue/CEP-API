@@ -13,7 +13,7 @@ const searchCep = async() => {
     const dados =  await fetch(url);
     const endereco = await dados.json();
 
-    if(endereco.hasOwnProperty('erro')){
+    if (endereco.hasOwnProperty('erro')) {
         document.getElementById('endereco').value = 'CEP não encontrado';
     } else {
         preencherForm(endereco); 
